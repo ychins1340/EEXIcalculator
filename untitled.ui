@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1207</width>
-    <height>785</height>
+    <width>1227</width>
+    <height>884</height>
    </rect>
   </property>
   <property name="font">
@@ -60,14 +60,14 @@
       <x>20</x>
       <y>40</y>
       <width>301</width>
-      <height>701</height>
+      <height>791</height>
      </rect>
     </property>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
       <rect>
        <x>160</x>
-       <y>630</y>
+       <y>720</y>
        <width>131</width>
        <height>61</height>
       </rect>
@@ -505,6 +505,82 @@
      </property>
      <property name="text">
       <string>CF AE(tCO2/t-fuel)</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_31">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>600</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Comic Sans MS</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Overridable EPL</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="OEPL_in">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>610</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_32">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>650</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Comic Sans MS</family>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>nonOverridable EPL</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="nonOEPL_in">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>660</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -1070,7 +1146,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1207</width>
+     <width>1227</width>
      <height>20</height>
     </rect>
    </property>

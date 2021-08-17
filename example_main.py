@@ -197,6 +197,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
             a = 1
             c = 1
             referenceRate=0
+        
         ####    
         MCR_ME_value = float(self.MCR_ME.text())
         if self.LWT.text()!='':
@@ -235,10 +236,24 @@ class Main(QMainWindow, ui.Ui_MainWindow):
             CF_AE = float(self.CF_AE_in.text())
         else:
             CF_AE=3.114    
-        ###########
-        
-        
-        
+        if self.OEPL_in.text()!='':
+            OEPL = float(self.OEPL_in.text())
+            PME=0.83*(OEPL-PTO)
+        else:
+            PME = 0.75*(MCR_ME_value-PTO)
+        if self.nonOEPL_in.text()!='':
+            nonOEPL = float(self.nonOEPL_in.text())
+            PME=0.75*(nonOEPL-PTO)
+        else:
+            PME = 0.75*(MCR_ME_value-PTO)
+        ###########        
+        if self.OEPL_in.text()!='':
+            PME=0.83*(OEPL-PTO)
+        elif self.nonOEPL_in.text()!='':
+            PME=0.75*(nonOEPL-PTO)
+        else:
+            PME = 0.75*(MCR_ME_value-PTO)
+        #########
         if self.comboBox.currentIndex()==1:
             if DWT_value<=95000:    
                 MCR_avg = D*(DWT_value**(F))
@@ -247,7 +262,6 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         else:
             MCR_avg = D*(DWT_value**(F))
         
-        PME = 0.75*(MCR_ME_value-PTO)
         if self.comboBox.currentIndex()==1:
             if DWT_value<=80000:
                 Vavg = A*(DWT_value**(C))
