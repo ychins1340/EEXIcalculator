@@ -111,7 +111,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
                     # else:
                         # return -1
 
-        DWT_value = int(self.DWT.text())
+        DWT_value = float(self.DWT.text())
         if self.comboBox.currentIndex()==0:
             A = 10.6585
             C = 0.02706
@@ -198,24 +198,47 @@ class Main(QMainWindow, ui.Ui_MainWindow):
             c = 1
             referenceRate=0
         ####    
-        MCR_ME_value = int(self.MCR_ME.text())
+        MCR_ME_value = float(self.MCR_ME.text())
         if self.LWT.text()!='':
-            LWT_value = int(self.LWT.text())
+            LWT_value = float(self.LWT.text())
         else:
             LWT_value=0
         if self.VS_EEDI.text()!='':
-            VS_EEDI_value = int(self.VS_EEDI.text())
+            VS_EEDI_value = float(self.VS_EEDI.text())
         else:
             VS_EEDI_value=0
         if self.PS_EEDI.text()!='':
-            PS_EEDI_value = int(self.PS_EEDI.text())
+            PS_EEDI_value = float(self.PS_EEDI.text())
         else:
             PS_EEDI_value=0   
         if self.PAE_in.text()!='':
-            PAE = int(self.PAE_in.text())
+            PAE = float(self.PAE_in.text())
         else:
             PAE=0   
+        if self.SFC_ME_in.text()!='':
+            SFC_ME = float(self.SFC_ME_in.text())
+        else:
+            SFC_ME=190
+        if self.SFC_AE_in.text()!='':
+            SFC_AE = float(self.SFC_AE_in.text())
+        else:
+            SFC_AE=215   
+        if self.PTO_in.text()!='':
+            PTO = float(self.PTO_in.text())
+        else: 
+            PTO=0   
+        if self.CF_ME_in.text()!='':
+            CF_ME = float(self.CF_ME_in.text())
+        else:
+            CF_ME=3.114
+        if self.CF_AE_in.text()!='':
+            CF_AE = float(self.CF_AE_in.text())
+        else:
+            CF_AE=3.114    
         ###########
+        
+        
+        
         if self.comboBox.currentIndex()==1:
             if DWT_value<=95000:    
                 MCR_avg = D*(DWT_value**(F))
@@ -224,7 +247,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         else:
             MCR_avg = D*(DWT_value**(F))
         
-        PME = 0.75*MCR_ME_value
+        PME = 0.75*(MCR_ME_value-PTO)
         if self.comboBox.currentIndex()==1:
             if DWT_value<=80000:
                 Vavg = A*(DWT_value**(C))
@@ -245,10 +268,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         else:
             PAE = PAE
         print(PAE)
-        SFC_ME=190
-        SFC_AE=215
-        CF_ME=3.114
-        CF_AE=3.114
+        
         fiCSR=1+0.08*LWT_value/DWT_value
         fcCHIP=1
         if self.comboBox.currentIndex()==1:
@@ -297,7 +317,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         self.MCR_lim.setText(str(round(PMEi/0.83,2)))
         self.Vappt_lim.setText(str(round(Vappi,2)))
         self.reduction.setText(str(round((PMEi/0.83)/MCR_ME_value*100,2))+'%')
- 
+        self.Vapp_reduction.setText(str(round(Vappi-Vapp,2)))
         
         ###plot###
         if self.comboBox.currentIndex()==0:
