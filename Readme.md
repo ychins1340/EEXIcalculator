@@ -1,4 +1,6 @@
 # CR EEXI calculator 簡易計算機使用手冊
+網頁好讀版:
+https://hackmd.io/@Ee55O50FQX6WTITGIrBYaQ/SkmAvg5xK
 
 本計算程式使用MEPC.333(76)之EEXI計算指南為基礎\
 :::info
