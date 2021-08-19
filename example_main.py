@@ -249,8 +249,10 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         ###########        
         if self.OEPL_in.text()!='':
             PME=0.83*(OEPL-PTO)
+            MCR_ME_value=OEPL
         elif self.nonOEPL_in.text()!='':
             PME=0.75*(nonOEPL-PTO)
+            MCR_ME_value=nonOEPL
         else:
             PME = 0.75*(MCR_ME_value-PTO)
         #########
@@ -348,6 +350,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
             x = np.linspace(100,1000,100)
         referenceline_plot = a*x**(-c)
         y = referenceline_plot*(1-referenceRate)
+
         
         # xc = np.linspace(1000, 2*DWT_value, 256)
         # yc = np.linspace( 1, 2*attainedEEXI_value, 256)
@@ -357,11 +360,23 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         if self.comboBox.currentIndex()!=1:
             plt.plot(x,y,label='Required EEXI')
             plt.plot(DWT_value,attainedEEXI_value, marker ='x', markersize=7, label='original Attained EEXI')
-            plt.plot(DWT_value,reqEEXI_value, marker ='o', markersize=5, label='new Attained EEXI')
+            if attainedEEXI_value>reqEEXI_value:
+                plt.plot(DWT_value,reqEEXI_value, marker ='o', markersize=5, label='new Attained EEXI')
+            else:
+                print('tt')
+            plt.text(DWT_value*1.5, max(y)/1.5, "Failure",fontsize=14,color='red')
+            plt.text(DWT_value*0.1, min(y)*1.2, "Pass",fontsize=14,color= 'green')
+
         else:
             plt.plot(x*0.7,y,label='Required EEXI')
             plt.plot(DWT_value*0.7,attainedEEXI_value, marker ='x', markersize=7, label='original Attained EEXI')
-            plt.plot(DWT_value*0.7,reqEEXI_value, marker ='o', markersize=5, label='new Attained EEXI')
+            if attainedEEXI_value>reqEEXI_value:
+                plt.plot(DWT_value*0.7,reqEEXI_value, marker ='o', markersize=5, label='new Attained EEXI')
+            else:
+                print('pp')
+            plt.text(DWT_value*0.7*1.5, max(y)/1.5, "Failure",fontsize=14,color='red')
+            plt.text(DWT_value*0.7*0.1, min(y)*1.2, "Pass",fontsize=14,color= 'green')
+
         plt.legend(loc = 'upper right')
         plt.xlabel('Capacity (tonnes)', color = 'blue')
         plt.ylabel('EEXI (g-CO2/t-mile)', color = 'blue')
