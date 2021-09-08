@@ -5,6 +5,7 @@ from PyQt5.QtGui import *
 import base64
 from pic2str import explode
 from PIL import Image, ImageQt
+import seaborn as sns
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -110,7 +111,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
                         # return 1
                     # else:
                         # return -1
-
+        plt.close()
         DWT_value = float(self.DWT.text())
         if self.comboBox.currentIndex()==0:
             A = 10.6585
@@ -282,8 +283,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
             else:
                 PAE=0.05*MCR_ME_value
         else:
-            PAE = PAE
-        print(PAE)
+         print(PAE)
         
         fiCSR=1+0.08*LWT_value/DWT_value
         fcCHIP=1
@@ -330,9 +330,9 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         self.reqEEXI.setText(str(round(reqEEXI_value,2)))
         
         self.PME_lim.setText(str(round(PMEi,2)))
-        self.MCR_lim.setText(str(round(PMEi/0.83,2)))
+        self.MCR_lim.setText(str(round(PMEi/0.83+PTO,2)))
         self.Vappt_lim.setText(str(round(Vappi,2)))
-        self.reduction.setText(str(round((PMEi/0.83)/MCR_ME_value*100,2))+'%')
+        self.reduction.setText(str(round((PMEi/0.83+PTO)/MCR_ME_value*100,2))+'%')
         self.Vapp_reduction.setText(str(round(Vappi-Vapp,2)))
         
         ###plot###
@@ -381,6 +381,8 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         plt.xlabel('Capacity (tonnes)', color = 'blue')
         plt.ylabel('EEXI (g-CO2/t-mile)', color = 'blue')
         plt.title('Capacity-EEXI', color = 'black')
+        # sns.set_palette("Blues_r", 8)
+
         plt.show()
         
 

@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['example_main.py', 'example_ui.py', 'pic2str.py'],
+a = Analysis(['example_main.py', 'example_ui.py'],
              pathex=['D:\\container fixed\\ui\\EEXI\\EEXIcalculator'],
              binaries=[],
              datas=[],
