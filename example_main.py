@@ -201,6 +201,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
         
         ####    
         MCR_ME_value = float(self.MCR_ME.text())
+        MCRo=MCR_ME_value
         if self.LWT.text()!='':
             LWT_value = float(self.LWT.text())
         else:
@@ -213,10 +214,7 @@ class Main(QMainWindow, ui.Ui_MainWindow):
             PS_EEDI_value = float(self.PS_EEDI.text())
         else:
             PS_EEDI_value=0   
-        if self.PAE_in.text()!='':
-            PAE = float(self.PAE_in.text())
-        else:
-            PAE=0   
+       
         if self.SFC_ME_in.text()!='':
             SFC_ME = float(self.SFC_ME_in.text())
         else:
@@ -274,17 +272,16 @@ class Main(QMainWindow, ui.Ui_MainWindow):
             Vavg = A*(DWT_value**(C))
         margin = min(1,Vavg*0.05)
         if VS_EEDI_value == 0:
-            Vapp = (Vavg-margin)*(MCR_ME_value/MCR_avg)**(1/3)
+            Vapp = (Vavg-margin)*(PME/(0.75*MCR_avg))**(1/3)
         else:
             Vapp = VS_EEDI_value*(PME/PS_EEDI_value)**(1/3)
-        if PAE==0:
-            if MCR_ME_value>=10000:
-                PAE=0.025*MCR_ME_value+250
-            else:
-                PAE=0.05*MCR_ME_value
-        else:
-         print(PAE)
         
+        if MCRo>=10000:
+            PAE=0.025*MCRo+250
+        else:
+            PAE=0.05*MCRo
+       
+                
         fiCSR=1+0.08*LWT_value/DWT_value
         fcCHIP=1
         if self.comboBox.currentIndex()==1:
